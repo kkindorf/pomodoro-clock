@@ -1,23 +1,51 @@
 $(document).ready(function(){
-  var clock = $(".clock");
-  var breakBox = $(".breakBox");
+  var pomodoroTime = $(".pomodoroTime");
+  var breakTime = $(".breakTime");
+  var theTime = $(".theTime");
+  var breakPlus = $(".breakPlus");
+  var breakMinus = $(".breakMinus");
+  var clockPlus = $(".clockPlus");
+  var clockMinus = $(".clockMinus");
+  var start = $(".start");
   var pomodoro = {
-    seconds: 10,
-    minutes: 0,
+    seconds: 60,
+    minutes: 25,
     hours: 0
   };
-  var breakTime = {
+  var breaker = {
     seconds: 60,
     minutes: 5
-  }
-  clock.text(pomodoro.minutes);
-  breakBox.text(breakTime.minutes);
+  };
+  pomodoroTime.text(pomodoro.minutes+":00");
+  breakTime.text(breaker.minutes+":00");
+  theTime.text(pomodoro.minutes+":00");
+  breakPlus.click(function(){
+    breaker.minutes++;
+    breakTime.text(breaker.minutes+":00");
+  })
+  breakMinus.click(function(){
+    breaker.minutes--;
+    breakTime.text(breaker.minutes+":00");
+  })
+  clockPlus.click(function(){
+    pomodoro.minutes++;
+    pomodoroTime.text(pomodoro.minutes+":00");
+    start.text(pomodoro.minutes+":00");
+  })
+  clockMinus.click(function(){
+    pomodoro.minutes--;
+    pomodoroTime.text(pomodoro.minutes+":00");
+    theTime.text(pomodoro.minutes+":00");
+  })
+
+start.on('click', function(){
+  pomodoro.minutes--;
   var timer = setInterval(function(){
      pomodoro.seconds--;
      if(pomodoro.seconds < 10){
-       clock.text(pomodoro.minutes +":0"+pomodoro.seconds);
+       theTime.text(pomodoro.minutes +":0"+pomodoro.seconds);
      } else{
-       clock.text(pomodoro.minutes +":"+pomodoro.seconds);
+       theTime.text(pomodoro.minutes +":"+pomodoro.seconds);
      }
      if(pomodoro.seconds === 0 && pomodoro.minutes > 0){
        pomodoro.minutes--;
@@ -25,22 +53,25 @@ $(document).ready(function(){
      }
      else if(pomodoro.minutes === 0 && pomodoro.seconds === 0){
        clearInterval(timer);
-       breakTime.minutes--;
+       breaker.minutes--;
+       theTime.text(breaker.minutes+":00")
        var breakTimer = setInterval(function(){
-         breakTime.seconds--;
-         if(breakTime.seconds < 10){
-           breakBox.text(breakTime.minutes +":0"+breakTime.seconds);
+         breaker.seconds--;
+         if(breaker.seconds < 10){
+           theTime.text(breaker.minutes +":0"+breaker.seconds);
          } else{
-           breakBox.text(breakTime.minutes +":"+breakTime.seconds);
+           theTime.text(breaker.minutes +":"+breaker.seconds);
          }
-         if(breakTime.seconds === 0 && breakTime.minutes > 0){
-           breakTime.minutes--;
-           breakTime.seconds = 60;
+         if(breaker.seconds === 0 && breaker.minutes > 0){
+           breaker.minutes--;
+           breaker.seconds = 60;
          }
-         else if(breakTime.minutes === 0 && breakTime.seconds === 0){
+         else if(breaker.minutes === 0 && breaker.seconds === 0){
            clearInterval(breakTimer);
          }
        }, 1000)
      }
   }, 1000);
+})
+
 })

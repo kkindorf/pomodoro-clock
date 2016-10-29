@@ -1,0 +1,19 @@
+#wrapper{
+  max-width: 600px;
+  margin:0 auto;
+  text-align: center;
+}
+.breakPlus,
+.breakMinus,
+.clockPlus,
+.clockMinus,
+.pomodoroTime,
+.breakTime{
+  display: inline-block;
+   margin-right:5px;
+}
+
+.clock,
+.breakBox{
+  display: inline-block;
+}
