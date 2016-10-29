@@ -16,29 +16,51 @@ $(document).ready(function(){
     seconds: 60,
     minutes: 5
   };
+  var reset = function(){
+    pomdoro.minutes = 25;
+    breaker.minutes = 5;
+    pomodoroTime.text(pomodoro.minutes+":00");
+    breakTime.text(breaker.minutes+":00");
+    theTime.text(pomodoro.minutes+":00");
+  }
   pomodoroTime.text(pomodoro.minutes+":00");
   breakTime.text(breaker.minutes+":00");
   theTime.text(pomodoro.minutes+":00");
   breakPlus.click(function(){
+    if(breaker.minutes === 10){
+      return;
+    }
     breaker.minutes++;
     breakTime.text(breaker.minutes+":00");
   })
   breakMinus.click(function(){
+    if(breaker.minutes === 1){
+      return;
+    }
     breaker.minutes--;
     breakTime.text(breaker.minutes+":00");
   })
   clockPlus.click(function(){
+    if(pomodoro.minutes === 60){
+      pomodoroTime.text(pomodoro.minutes+":00");
+      theTime.text(pomodoro.minutes+":00");
+      return;
+    }
     pomodoro.minutes++;
     pomodoroTime.text(pomodoro.minutes+":00");
-    start.text(pomodoro.minutes+":00");
+    theTime.text(pomodoro.minutes+":00");
   })
   clockMinus.click(function(){
+    if(pomodoro.minutes === 1){
+      return;
+    }
     pomodoro.minutes--;
     pomodoroTime.text(pomodoro.minutes+":00");
     theTime.text(pomodoro.minutes+":00");
   })
 
 start.on('click', function(){
+  $('button').attr('disabled', true);
   pomodoro.minutes--;
   var timer = setInterval(function(){
      pomodoro.seconds--;
@@ -56,6 +78,9 @@ start.on('click', function(){
        breaker.minutes--;
        theTime.text(breaker.minutes+":00")
        var breakTimer = setInterval(function(){
+         breakMinus.click(function(){
+           return;
+         })
          breaker.seconds--;
          if(breaker.seconds < 10){
            theTime.text(breaker.minutes +":0"+breaker.seconds);
@@ -67,11 +92,14 @@ start.on('click', function(){
            breaker.seconds = 60;
          }
          else if(breaker.minutes === 0 && breaker.seconds === 0){
+           $('button').attr('disabled', false);
            clearInterval(breakTimer);
          }
        }, 1000)
+    
      }
   }, 1000);
+
 })
 
 })
