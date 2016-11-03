@@ -73,8 +73,6 @@ $(document).ready(function() {
     pause.on('click', function() {
         isPaused = true;
         breakPaused = true;
-        clearInterval(timer);
-        time();
 
     });
     start.on('click', function() {
