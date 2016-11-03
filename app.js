@@ -8,6 +8,7 @@ var clockMinus = $(".clockMinus");
 var sessionType = $(".session-type");
 var start = $(".start");
 var pause = $(".pause");
+var reset = $(".reset");
 var isPaused = true;
 var breakPaused = true;
 var count = 1;
@@ -25,6 +26,8 @@ $(document).ready(function(){
   breakTime.text(breaker.minutes+":00");
   theTime.text(pomodoro.minutes+":00");
   breakPlus.click(function(){
+    count = 1;
+    breaker.seconds = 60;
     if(breaker.minutes === 10){
       return;
     }
@@ -32,6 +35,8 @@ $(document).ready(function(){
     breakTime.text(breaker.minutes+":00");
   })
   breakMinus.click(function(){
+    count = 1;
+    breaker.seconds = 60;
     if(breaker.minutes === 1){
       return;
     }
@@ -39,6 +44,8 @@ $(document).ready(function(){
     breakTime.text(breaker.minutes+":00");
   })
   clockPlus.click(function(){
+    count = 1;
+    pomodoro.seconds = 60;
     if(pomodoro.minutes === 60){
       pomodoroTime.text(pomodoro.minutes+":00");
       theTime.text(pomodoro.minutes+":00");
@@ -50,6 +57,8 @@ $(document).ready(function(){
     theTime.text(pomodoro.minutes+":00");
   })
   clockMinus.click(function(){
+    count = 1;
+    pomodoro.seconds = 60;
     if(pomodoro.minutes === 1){
       return;
     }
@@ -60,7 +69,12 @@ $(document).ready(function(){
   pause.on('click', function(){
       isPaused = true;
       breakPaused = true;
-
+      breakPlus.show();
+      breakMinus.show();
+      clockPlus.show();
+      clockMinus.show();
+      clearInterval(timer);
+      time();
 
   });
   start.on('click', function(){
@@ -75,9 +89,25 @@ $(document).ready(function(){
       }
       count++;
   });
+  reset.on('click', function(){
+    breakPlus.show();
+    breakMinus.show();
+    clockPlus.show();
+    clockMinus.show();
+    clearInterval(timer);
+    pomodoro.minutes = 25;
+    pomodoro.seconds = 60;
+    breaker.minutes  = 5;
+    breaker.seconds = 60;
+    count = 1;
+    isPaused = true;
+    breakPaused = true;
+    pomodoroTime.text(pomodoro.minutes+":00");
+    breakTime.text(breaker.minutes+":00");
+    theTime.text(pomodoro.minutes+":00");
     time();
-
-
+  })
+    time();
     function time(){
       timer = setInterval(function(){
         sessionType.text('Session');

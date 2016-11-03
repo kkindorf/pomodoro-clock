@@ -29,6 +29,6 @@ button {
 .start-pause{
     margin-top: 50px;
 }
-.start{
+.start, .pause{
   padding-right: 85px;
 }
