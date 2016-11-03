@@ -1,28 +1,34 @@
-#wrapper{
-  max-width: 600px;
-  margin:0 auto;
-  text-align: center;
+#wrapper {
+    max-width: 600px;
+    text-align: center;
+    margin: auto;
 }
-.breakPlus,
-.breakMinus,
-.clockPlus,
-.clockMinus,
-.pomodoroTime,
-.breakTime{
-  display: inline-block;
-   margin-right:5px;
+.breakBox{
+  float: left;
 }
-button{
-  background: none;
-  border: 0;
-  font-size: 1.5em;
+.clock{
+  float: right;
 }
-.clock,
-.breakBox,
-.pause,
-.start {
-  display: inline-block;
+
+.breakPlus, .breakMinus, .clockPlus, .clockMinus, .pomodoroTime, .breakTime {
+    display: inline-block;
+}
+
+button {
+    background: none;
+    border: 0;
+    font-size: 1.5em;
 }
 .timer{
-  padding-bottom:30px;
+  padding-top: 160px;
+}
+
+.clock, .breakBox, .pause, .start {
+    display: inline-block;
+}
+.start-pause{
+    margin-top: 50px;
+}
+.start{
+  padding-right: 85px;
 }

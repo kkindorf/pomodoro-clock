@@ -1,26 +1,26 @@
+var pomodoroTime = $(".pomodoroTime");
+var breakTime = $(".breakTime");
+var theTime = $(".theTime");
+var breakPlus = $(".breakPlus");
+var breakMinus = $(".breakMinus");
+var clockPlus = $(".clockPlus");
+var clockMinus = $(".clockMinus");
+var sessionType = $(".session-type");
+var start = $(".start");
+var pause = $(".pause");
+var isPaused = true;
+var breakPaused = true;
+var count = 1;
+var pomodoro = {
+  seconds: 60,
+  minutes: 25,
+  hours: 0
+};
+var breaker = {
+  seconds: 60,
+  minutes: 5
+};
 $(document).ready(function(){
-  var pomodoroTime = $(".pomodoroTime");
-  var breakTime = $(".breakTime");
-  var theTime = $(".theTime");
-  var breakPlus = $(".breakPlus");
-  var breakMinus = $(".breakMinus");
-  var clockPlus = $(".clockPlus");
-  var clockMinus = $(".clockMinus");
-  var sessionType = $(".session-type");
-  var start = $(".start");
-  var pause = $(".pause");
-  var isPaused = true;
-  var breakPaused = true;
-  var count = 0;
-  var pomodoro = {
-    seconds: 60,
-    minutes: 25,
-    hours: 0
-  };
-  var breaker = {
-    seconds: 60,
-    minutes: 5
-  };
   pomodoroTime.text(pomodoro.minutes+":00");
   breakTime.text(breaker.minutes+":00");
   theTime.text(pomodoro.minutes+":00");
@@ -45,6 +45,7 @@ $(document).ready(function(){
       return;
     }
     pomodoro.minutes++;
+    setPomodoroMin = pomodoro.minutes;
     pomodoroTime.text(pomodoro.minutes+":00");
     theTime.text(pomodoro.minutes+":00");
   })
@@ -59,17 +60,25 @@ $(document).ready(function(){
   pause.on('click', function(){
       isPaused = true;
       breakPaused = true;
+
+
   });
   start.on('click', function(){
-      $('button').attr('disabled', true);
-      console.log('start clicked')
-      count++;
+      breakPlus.hide();
+      breakMinus.hide();
+      clockPlus.hide();
+      clockMinus.hide();
       isPaused = false;
       breakPaused = false;
       if(count == 1){
         pomodoro.minutes--;
       }
+      count++;
   });
+    time();
+
+
+    function time(){
       timer = setInterval(function(){
         sessionType.text('Session');
         if(isPaused == false){
@@ -87,7 +96,6 @@ $(document).ready(function(){
            clearInterval(timer);
            breaker.minutes--;
            theTime.text(breaker.minutes+":00")
-
            breakTimer = setInterval(function(){
              sessionType.text('Break');
              if(breakPaused == false){
@@ -108,14 +116,23 @@ $(document).ready(function(){
                pomodoro.seconds = 60;
                breaker.minutes  = 5;
                breaker.seconds = 60;
+               count = 1;
+               isPaused = true;
+               breakPaused = true;
                pomodoroTime.text(pomodoro.minutes+":00");
                breakTime.text(breaker.minutes+":00");
                theTime.text(pomodoro.minutes+":00");
                clearInterval(breakTimer);
+               breakPlus.show();
+               breakMinus.show();
+               clockPlus.show();
+               clockMinus.show();
+               time();
              }
             }
            }, 1000)
          }
        }
      }, 1000);
+   };
 })
