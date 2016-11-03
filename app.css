@@ -1,7 +1,16 @@
+body{
+  font-family: 'Cabin', sans-serif;
+  color: #3A2647;
+  background: #B8AE92;
+  text-shadow: 0 0 2px #fff;
+}
 #wrapper {
-    max-width: 600px;
-    text-align: center;
-    margin: auto;
+  margin: auto;
+   position: absolute;
+   top: 0; left: 0; bottom: 0; right: 0;
+   max-width: 600px;
+   max-height: 400px;
+   text-align: center;
 }
 .breakBox{
   float: left;
@@ -9,25 +18,33 @@
 .clock{
   float: right;
 }
-
-.breakPlus, .breakMinus, .clockPlus, .clockMinus, .pomodoroTime, .breakTime {
-    display: inline-block;
+.breakBox, .clock{
+  padding:20px;
 }
 
 button {
     background: none;
     border: 0;
     font-size: 1.5em;
-}
-.timer{
-  padding-top: 160px;
-}
+    color: #3A2647;
 
-.clock, .breakBox, .pause, .start {
+}
+button, .pomodoroTime, .breakTime, .clock {
     display: inline-block;
 }
-.start-pause{
-    margin-top: 50px;
+button:disabled{
+  color: #3A2647;
+}
+.timer{
+  padding-bottom: 85px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 60px;
+}
+.theTime{
+  font-size:4em;
+  letter-spacing: .1em;
+  padding-left: 10px;
 }
 .start, .pause{
   padding-right: 85px;
