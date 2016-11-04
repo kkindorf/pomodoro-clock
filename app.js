@@ -74,6 +74,7 @@ $(document).ready(function() {
         isPaused = true;
         breakPaused = true;
 
+
     });
     start.on('click', function() {
         $("button").attr("disabled", true);
