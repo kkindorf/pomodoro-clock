@@ -87,7 +87,7 @@ $(document).ready(function() {
         count++;
     });
     reset.on('click', function() {
-        $("button").attr("disabled", true);
+        $("button").attr("disabled", false);
         breakPlus.show();
         breakMinus.show();
         clockPlus.show();

@@ -13,9 +13,8 @@ body{
   max-height: 250px;
 }
 .header{
-  font-size:4em;
+  font-size:3em;
   text-align: center;
-  margin-bottom:30px;
   color: #880000;
 }
 .breakBox{
@@ -25,7 +24,7 @@ body{
   float: right;
 }
 .breakBox, .clock{
-  padding:20px;
+  padding: 15px;
 }
 
 button {
@@ -33,7 +32,6 @@ button {
     border: 0;
     font-size: 1.5em;
     color: #3A2647;
-
 }
 button, .pomodoroTime, .breakTime, .clock {
     display: inline-block;
@@ -43,12 +41,12 @@ button:disabled{
 }
 .timer{
   padding-top:60px;
-  width:148px;
-  margin: 0 auto;
+  width:147px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .theTime{
   font-size:4em;
-
 }
 .start, .pause{
   padding-right: 85px;
