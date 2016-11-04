@@ -73,7 +73,8 @@ $(document).ready(function() {
     pause.on('click', function() {
         isPaused = true;
         breakPaused = true;
-
+        clearInterval(timer);
+        time();
 
     });
     start.on('click', function() {
@@ -86,7 +87,7 @@ $(document).ready(function() {
         count++;
     });
     reset.on('click', function() {
-        $("button").attr("disabled", false);
+        $("button").attr("disabled", true);
         breakPlus.show();
         breakMinus.show();
         clockPlus.show();

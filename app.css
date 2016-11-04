@@ -2,18 +2,18 @@ body{
   font-family: 'Cabin', sans-serif;
   color: #3A2647;
   background: #B8AE92;
-  text-shadow: 0 0 2px #fff;
 }
 #wrapper {
-   margin: auto;
-   position: absolute;
-   top: 0; left: 0; bottom: 0; right: 0;
-   max-width: 600px;
-   max-height: 250px;
-   text-align: center;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-width: 600px;
+  max-height: 250px;
 }
 .header{
-  font-size:3em;
+  font-size:4em;
   text-align: center;
   margin-bottom:30px;
   color: #880000;
@@ -42,16 +42,17 @@ button:disabled{
   color: #3A2647;
 }
 .timer{
-  padding-bottom: 85px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 60px;
+  padding-top:60px;
+  width:148px;
+  margin: 0 auto;
 }
 .theTime{
   font-size:4em;
-  letter-spacing: .1em;
-  padding-left: 10px;
+
 }
 .start, .pause{
   padding-right: 85px;
+}
+.start-pause, .session-type{
+  text-align: center;
 }
