@@ -1,30 +1,35 @@
-body{
-  font-family: 'Cabin', sans-serif;
-  color: #3A2647;
-  background: #B8AE92;
+body {
+    font-family: 'Cabin', sans-serif;
+    color: #3A2647;
+    background: #B8AE92;
 }
+
 #wrapper {
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  max-width: 600px;
-  max-height: 250px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 600px;
+    max-height: 250px;
 }
-.header{
-  font-size:3em;
-  text-align: center;
-  color: #880000;
+
+.header {
+    font-size: 3em;
+    text-align: center;
+    color: #880000;
 }
-.breakBox{
-  float: left;
+
+.breakBox {
+    float: left;
 }
-.clock{
-  float: right;
+
+.clock {
+    float: right;
 }
-.breakBox, .clock{
-  padding: 15px;
+
+.breakBox, .clock {
+    padding: 15px;
 }
 
 button {
@@ -33,24 +38,30 @@ button {
     font-size: 1.5em;
     color: #3A2647;
 }
+
 button, .pomodoroTime, .breakTime, .clock {
     display: inline-block;
 }
-button:disabled{
-  color: #3A2647;
+
+button:disabled {
+    color: #3A2647;
 }
-.timer{
-  padding-top:60px;
-  width:147px;
-  margin-left: auto;
-  margin-right: auto;
+
+.timer {
+    padding-top: 60px;
+    width: 147px;
+    margin-left: auto;
+    margin-right: auto;
 }
-.theTime{
-  font-size:4em;
+
+.theTime {
+    font-size: 4em;
 }
-.start, .pause{
-  padding-right: 85px;
+
+.start, .pause {
+    padding-right: 85px;
 }
-.start-pause, .session-type{
-  text-align: center;
+
+.start-pause, .session-type {
+    text-align: center;
 }
