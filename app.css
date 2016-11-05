@@ -13,6 +13,7 @@ body {
     position: absolute;
     max-width: 500px;
     max-height: 250px;
+
 }
 
 .header {
@@ -52,15 +53,15 @@ button:disabled {
     padding-top: 60px;
     margin-left: auto;
     margin-right: auto;
-    width: 150px;
+    text-align: center;
 }
 
 .theTime {
     font-size: 4em;
 }
 
-.start, .pause {
-    padding-right: 85px;
+.start {
+    padding-right: 120px;
 }
 
 .start-pause, .session-type {

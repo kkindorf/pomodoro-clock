@@ -9,10 +9,11 @@ var sessionType = $(".session-type");
 var start = $(".start");
 var pause = $(".pause");
 var reset = $(".reset");
-var body = $("body");
 var isPaused = true;
 var breakPaused = true;
+var startCount = 0;
 var count = 1;
+var minus = 0;
 var pomodoro = {
     seconds: 60,
     minutes: 25,
@@ -30,24 +31,54 @@ sessionType.text('Session');
 
 $(document).ready(function() {
     breakPlus.click(function() {
-        count = 1;
-        breaker.seconds = 60;
-        if (breaker.minutes === 10) {
-            return;
+        if (startCount == 0) {
+            breaker.minutes++;
+            breakTime.text(breaker.minutes + ":00");
         }
-        breaker.minutes++;
-        breakTime.text(breaker.minutes + ":00");
+        if (sessionType.text() === 'Break') {
+            breaker.minutes++;
+            theTime.text(breaker.minutes + ':00');
+            breakTime.text(breaker.minutes + ":00");
+            breaker.seconds = 60;
+            count = 1;
+
+        }
     })
     breakMinus.click(function() {
-        count = 1;
-        breaker.seconds = 60;
-        if (breaker.minutes === 1) {
+        if (startCount == 0) {
+            if (breaker.minutes === 1) {
+                return;
+            }
+            breaker.minutes--;
+            if (breaker.seconds > 0) {
+                breakTime.text(breaker.minutes + ":00");
+            }
+
+        }
+        if (sessionType.text() === 'Break' && startCount > 0) {
+            breakTime.text(breaker.minutes + ":00");
+            if (breaker.minutes === 1) {
+                return;
+            }
+            if (minus === 0) {
+                breaker.minutes++;
+            }
+            minus++;
+            breaker.minutes--;
+            theTime.text(breaker.minutes + ':00');
+            breakTime.text(breaker.minutes + ":00");
+            breaker.seconds = 60;
+            count = 1;
+
+        }
+
+    })
+
+    clockPlus.click(function() {
+        if (sessionType.text() == 'Break') {
             return;
         }
-        breaker.minutes--;
-        breakTime.text(breaker.minutes + ":00");
-    })
-    clockPlus.click(function() {
+        pomodoroTime.text(pomodoro.minutes + ":00");
         count = 1;
         pomodoro.seconds = 60;
         if (pomodoro.minutes === 60) {
@@ -55,12 +86,20 @@ $(document).ready(function() {
             theTime.text(pomodoro.minutes + ":00");
             return;
         }
+
         pomodoro.minutes++;
-        setPomodoroMin = pomodoro.minutes;
         pomodoroTime.text(pomodoro.minutes + ":00");
         theTime.text(pomodoro.minutes + ":00");
     })
     clockMinus.click(function() {
+        if (sessionType.text() == 'Break') {
+            return;
+        }
+        if (minus === 0) {
+            pomodoro.minutes++;
+        }
+        minus++;
+        pomodoroTime.text(pomodoro.minutes + ":00");
         count = 1;
         pomodoro.seconds = 60;
         if (pomodoro.minutes === 1) {
@@ -71,40 +110,25 @@ $(document).ready(function() {
         theTime.text(pomodoro.minutes + ":00");
     })
     pause.on('click', function() {
+        $("button").attr('disabled', false);
         isPaused = true;
         breakPaused = true;
-        clearInterval(timer);
-        time();
-
+        clearInterval();
     });
     start.on('click', function() {
-        $("button").attr("disabled", true);
+        minus = 0;
+        startCount++;
+        $("button").attr('disabled', true);
         isPaused = false;
         breakPaused = false;
         if (count == 1) {
             pomodoro.minutes--;
         }
+        if (count == 1 && sessionType.text() == 'Break') {
+            breaker.minutes--;
+        }
         count++;
     });
-    reset.on('click', function() {
-        $("button").attr("disabled", false);
-        breakPlus.show();
-        breakMinus.show();
-        clockPlus.show();
-        clockMinus.show();
-        clearInterval(timer);
-        pomodoro.minutes = 25;
-        pomodoro.seconds = 60;
-        breaker.minutes = 5;
-        breaker.seconds = 60;
-        count = 1;
-        isPaused = true;
-        breakPaused = true;
-        pomodoroTime.text(pomodoro.minutes + ":00");
-        breakTime.text(breaker.minutes + ":00");
-        theTime.text(pomodoro.minutes + ":00");
-        time();
-    })
     time();
 
     function time() {
@@ -121,10 +145,10 @@ $(document).ready(function() {
                     pomodoro.seconds = 60;
                 } else if (pomodoro.minutes === 0 && pomodoro.seconds === 0) {
                     clearInterval(timer);
-                    breaker.minutes--;
                     theTime.text(breaker.minutes + ":00")
+                    sessionType.text('Break');
+                    breaker.minutes--;
                     breakTimer = setInterval(function() {
-                        sessionType.text('Break');
                         if (breakPaused == false) {
                             breaker.seconds--;
                             if (breaker.seconds < 10) {
@@ -143,16 +167,14 @@ $(document).ready(function() {
                                 breaker.minutes = 5;
                                 breaker.seconds = 60;
                                 count = 1;
+                                startCount = 0;
+                                minus = 0;
                                 isPaused = true;
                                 breakPaused = true;
                                 pomodoroTime.text(pomodoro.minutes + ":00");
                                 breakTime.text(breaker.minutes + ":00");
                                 theTime.text(pomodoro.minutes + ":00");
                                 clearInterval(breakTimer);
-                                breakPlus.show();
-                                breakMinus.show();
-                                clockPlus.show();
-                                clockMinus.show();
                                 time();
                             }
                         }
