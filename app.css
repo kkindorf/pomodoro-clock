@@ -1,16 +1,11 @@
 body {
-    font-family: 'Cabin', sans-serif;
+    font-family: sans-serif;
     color: #3A2647;
     background: #B8AE92;
 }
 
 #wrapper {
     margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
     max-width: 500px;
     max-height: 250px;
 
@@ -51,9 +46,8 @@ button:disabled {
 
 .timer {
     padding-top: 60px;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
+
 }
 
 .theTime {
