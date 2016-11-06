@@ -8,6 +8,12 @@ body {
     margin: auto;
     max-width: 500px;
     max-height: 250px;
+    right:0;
+    left: 0;
+    top:0;
+    bottom: 0;
+    position: absolute;
+    text-align: center;
 
 }
 
@@ -15,6 +21,7 @@ body {
     font-size: 3em;
     text-align: center;
     color: #880000;
+    padding-top:15px;
 }
 
 .breakBox {
@@ -46,7 +53,6 @@ button:disabled {
 
 .timer {
     padding-top: 60px;
-    text-align: center;
 
 }
 
@@ -56,8 +62,4 @@ button:disabled {
 
 .start {
     padding-right: 120px;
-}
-
-.start-pause, .session-type {
-    text-align: center;
 }
