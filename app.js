@@ -6,6 +6,8 @@ var breakMinus = $(".breakMinus");
 var clockPlus = $(".clockPlus");
 var clockMinus = $(".clockMinus");
 var sessionType = $(".session-type");
+var restart = document.getElementById("restart");
+var alert = document.getElementById("alert");
 var start = $(".start");
 var pause = $(".pause");
 var reset = $(".reset");
@@ -32,15 +34,25 @@ sessionType.text('Session');
 $(document).ready(function() {
     breakPlus.click(function() {
         if (startCount == 0) {
+          if(breaker.minutes === 60){
+            return;
+          }
             breaker.minutes++;
             breakTime.text(breaker.minutes + ":00");
+
         }
+
         if (sessionType.text() === 'Break') {
+          if(breaker.minutes === 60){
+            return;
+
+          }
             breaker.minutes++;
             theTime.text(breaker.minutes + ':00');
             breakTime.text(breaker.minutes + ":00");
             breaker.seconds = 60;
             count = 1;
+
 
         }
     })
@@ -148,6 +160,7 @@ $(document).ready(function() {
                     theTime.text(breaker.minutes + ":00")
                     sessionType.text('Break');
                     breaker.minutes--;
+                    alert.play();
                     breakTimer = setInterval(function() {
                         if (breakPaused == false) {
                             breaker.seconds--;
@@ -174,6 +187,7 @@ $(document).ready(function() {
                                 pomodoroTime.text(pomodoro.minutes + ":00");
                                 breakTime.text(breaker.minutes + ":00");
                                 theTime.text(pomodoro.minutes + ":00");
+                                restart.play();
                                 clearInterval(breakTimer);
                                 time();
                             }
