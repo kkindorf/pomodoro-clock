@@ -1,10 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Cutive+Mono');
 body {
     font-family: sans-serif;
     color: #3A2647;
-    background: #B8AE92;
 }
 
 #wrapper {
+    font-family: 'Cutive Mono', monospace;
     margin: auto;
     max-width: 500px;
     max-height: 250px;
@@ -18,10 +20,13 @@ body {
 }
 
 .header {
+    font-family: 'Bungee Inline', cursive;
     font-size: 3em;
     text-align: center;
     color: #880000;
     padding-top:15px;
+
+
 }
 
 .breakBox {
