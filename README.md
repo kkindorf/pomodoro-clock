@@ -2,6 +2,8 @@
 A Timer App Built with jQuery
 
 ![Pomodoro Clock](pomodoro.png)
+
+
 This was a a pretty complicated project when I first got started with it. When I first started coming up with a plan for this project, I didn't fully understand how setInterval worked with Javascript, but completing this project really helped me develop a solid understanding of how setInterval and setTimeout work.
 
 Basically, the most complicated function in the app is of course, the time() function:
